@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://telegram.org/js/telegram-web-app.js"></script> -->
     <title>Ultrachaos web app</title>
     <style>
         * {
@@ -45,13 +46,30 @@
 
 </head>
 <body>
-    <div class="Main">
-        <h1>Ultrachaos mini app</h1>
-        <p></p>
-        <button class="btn">Do nothing!</button>
-    </div>
+    <h1>ULTRACHAOS</h1>
+    <p></p>
+    <img id="imgCard" src="res/img/1.JPG"/>
+    <button class="btn", id="buttonRoll">Roll the dice!</button>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        function getRandomInt(min, max) {
+            const minCeiled = Math.ceil(min);
+            const maxFloored = Math.floor(max);
+            return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+        }
+
+        function updateCard() {
+            let cardNumber = getRandomInt(1, 9)
+            let imgPath = `res\\img\\${cardNumber}.JPG`
+            document.getElementById("imgCard").setAttribute("src", imgPath)
+        }
+
+        document.getElementById("buttonRoll").addEventListener("click", function () {
+            updateCard();
+        });
+    </script>
+
+    
 </body>
 
 </html>
