@@ -3,55 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://telegram.org/js/telegram-web-app.js"></script> -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Ultrachaos web app</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
         }
 
-        .Main {
-            width: 100%;
-            padding: 25px;
+        p {
             text-align: center;
-
+            font-size: x-large;
         }
 
-        h1 {
-            margin-top: 40px;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-style: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--tg-theme-button-text-color);
-            background: var(--tg-theme-button-color);
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 600px;
         }
         
     </style>
 
 </head>
 <body>
-    <h1>ULTRACHAOS</h1>
-    <p></p>
-    <img id="imgCard" src="res/img/1.JPG"/>
-    <button class="btn", id="buttonRoll">Roll the dice!</button>
+    <img id="cardImg" src="res/img/1.JPG"/>
+    <p id="cardText">Бой по максимальному значению кристалла бесстрашия.</p>
+    
 
     <script>
+        const cardDescs = [
+            'Бой по максимальному значению кристалла бесстрашия.',
+            'Бой по максимальному значению кристалла ярости.',
+            'Бой по максимальному значению кристалла неудержимости.',
+            'Бой по максимальному значению любого кристалла.',
+            'Бой по минимальному значению кристалла бесстрашия.',
+            'Бой по минимальному значению кристалла ярости.',
+            'Бой по минимальному значению кристалла неудержимости.',
+            'Бой по минимальному значению любого кристалла.',
+        ]
+
         function getRandomInt(min, max) {
             const minCeiled = Math.ceil(min);
             const maxFloored = Math.floor(max);
@@ -61,11 +55,17 @@
         function updateCard() {
             let cardNumber = getRandomInt(1, 9)
             let imgPath = `res\\img\\${cardNumber}.JPG`
-            document.getElementById("imgCard").setAttribute("src", imgPath)
+            let cardDesc = cardDescs[cardNumber - 1]
+            document.getElementById("cardImg").setAttribute("src", imgPath)
+            document.getElementById("cardText").innerText = cardDesc
         }
 
-        document.getElementById("buttonRoll").addEventListener("click", function () {
+        document.getElementById("cardImg").addEventListener("click", function () {
             updateCard();
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateCard()
         });
     </script>
 
