@@ -7,10 +7,6 @@
     <title>Ultrachaos web app</title>
     <style>
         body {
-            /* position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); */
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
         }
@@ -61,9 +57,9 @@
             document.getElementById("cardText").innerText = cardDesc
         }
 
-        document.getElementById("cardImg").addEventListener("click", function () {
+        document.addEventListener("click", function () {
             updateCard();
-        });
+        }, true);
 
         document.addEventListener("DOMContentLoaded", function() {
             updateCard()
